@@ -18,8 +18,6 @@ export class FormComponent {
   questionList: Question[] = [];
   answerForm = new FormArray([]);
   AnswerType = AnswerType;
-  otherCheckBox = false;
-  otherAnswer = '';
 
   constructor(
     private nzModalService: NzModalService,

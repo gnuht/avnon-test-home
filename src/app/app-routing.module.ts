@@ -22,7 +22,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/form',
+    redirectTo: 'form',
     pathMatch: 'full'
   }
 ];
