@@ -1,4 +1,4 @@
-import {AnswerOption, AnswerType} from "./form.model";
+import {AnswerOption, AnswerType} from "../models/form.model";
 
 export const AnswerOptions: AnswerOption[] = [
   {
@@ -9,4 +9,6 @@ export const AnswerOptions: AnswerOption[] = [
     label: 'Paragraph answer',
     id: AnswerType.Paragraph
   }
-]
+];
+
+export const OtherOption = {value: '', label: 'Other', checked: false};

@@ -1,8 +1,9 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
-import {AnswerOptions, AnswerType} from "../../../shared";
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
-import {Subject, takeUntil} from "rxjs";
+import {takeUntil} from "rxjs";
 import {DestroyService} from "../../../services";
+import {AnswerOptions} from "../../../shared/constants";
+import {AnswerType} from "../../../shared/models";
 
 @Component({
   selector: 'app-modal',
@@ -16,7 +17,8 @@ export class ModalComponent implements OnInit {
   answerOptions = AnswerOptions;
   questionForm!: FormGroup;
 
-  constructor(private cdr: ChangeDetectorRef, private destroy$: DestroyService) { }
+  constructor(private cdr: ChangeDetectorRef, private destroy$: DestroyService) {
+  }
 
   ngOnInit(): void {
     this.initQuestionForm();

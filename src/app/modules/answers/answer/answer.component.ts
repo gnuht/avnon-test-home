@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {BuilderService} from "../../../services/builder.service";
-import {AnswerType, Question} from "../../../shared";
-import {Observable, tap} from "rxjs";
+import {Observable} from "rxjs";
 import {Router} from "@angular/router";
+import {Answer, AnswerType} from "../../../shared/models";
 
 @Component({
   selector: 'app-answer',
@@ -11,17 +11,17 @@ import {Router} from "@angular/router";
 })
 export class AnswerComponent implements OnInit {
 
-  answerList$!: Observable<Omit<Question, 'isRequired' | 'options'>[]>;
+  answerList$!: Observable<Answer[]>;
   AnswerType = AnswerType;
-  constructor(private builderService: BuilderService, private router: Router) { }
 
-  ngOnInit(): void {
-    this.answerList$ = this.builderService.currentBuilderState$.pipe(tap(value => {
-      if (!value.length) this.router.navigateByUrl('form/builder');
-    }))
+  constructor(private builderService: BuilderService, private router: Router) {
   }
 
-  getOptions(answers: Omit<Question, 'isRequired'| 'options'>): string[] {
+  ngOnInit(): void {
+    this.answerList$ = this.builderService.currentBuilderState$;
+  }
+
+  getOptions(answers: Answer): string[] {
     return answers.answer as string[];
   }
 

@@ -8,7 +8,22 @@
         <ng-container *ngIf="question.type === AnswerType.CheckBox; else paragraphRef">
           <nz-checkbox-wrapper (nzOnChange)="onChangeCheckbox($event, i)">
             <div nz-col *ngFor="let checkbox of question.options">
-              <label nz-checkbox nzValue="{{checkbox.value}}">{{checkbox.label | titlecase}}</label>
+              <label nz-checkbox [nzValue]="checkbox.value">{{checkbox.label | titlecase}}</label>
+            </div>
+
+            <div class="builder__other-option" *ngIf="question.other">
+              <label nz-checkbox
+                     [nzValue]="question.other.value"
+                     [(ngModel)]="question.other.checked"
+                     [ngModelOptions]="{standalone: true}">
+              </label>
+              <ng-container *ngIf="question.other.checked; else otherLabel">
+                <input nz-input
+                       [ngModel]="question.other.value"
+                       [ngModelOptions]="{standalone: true}"
+                       (ngModelChange)="onChangeOtherAnswer($event, i, question.options!.length)"
+                />
+              </ng-container>
             </div>
           </nz-checkbox-wrapper>
         </ng-container>
@@ -30,3 +45,6 @@
   <button *ngIf="questionList.length" nz-button (click)="reviewAnswers()">Review my answers ></button>
 </form>
 
+<ng-template #otherLabel>
+  <span>Other</span>
+</ng-template>

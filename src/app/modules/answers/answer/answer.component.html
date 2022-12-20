@@ -1,12 +1,20 @@
 <div class="answers" *ngIf="(answerList$ | async) as answerList">
-  <ng-container *ngFor="let answer of answerList">
-    <p>{{answer.title | titlecase}}</p>
-    <ng-container *ngIf="answer.type === AnswerType.Paragraph; else answerCheckBoxRef">
-      <p>{{answer.answer}}</p>
-    </ng-container>
+  <div class="answers__content">
+    <ng-container *ngFor="let answer of answerList">
+      <div>
+        <p class="answers__title">{{answer.title | titlecase}}</p>
+        <div class="answers__value">
+          <ng-container *ngIf="answer.type === AnswerType.Paragraph; else answerCheckBoxRef">
+            <p>{{answer.answer}}</p>
+          </ng-container>
+        </div>
+      </div>
 
-    <ng-template #answerCheckBoxRef>
-      <p *ngFor="let option of getOptions(answer)">{{option | titlecase}}</p>
-    </ng-template>
-  </ng-container>
+      <ng-template #answerCheckBoxRef>
+        <p *ngFor="let option of getOptions(answer)">{{option | titlecase}}</p>
+      </ng-template>
+    </ng-container>
+  </div>
+
+  <a [routerLink]="'../builder'">Back to Form Builder</a>
 </div>

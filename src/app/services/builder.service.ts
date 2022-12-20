@@ -1,16 +1,16 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {BehaviorSubject} from "rxjs";
-import {Question} from "../shared";
+import {Answer} from "../shared/models";
 
 @Injectable({
   providedIn: 'root'
 })
 export class BuilderService {
 
-  private builderState$ = new BehaviorSubject<Omit<Question, 'isRequired' | 'options'>[]>([]);
+  private builderState$ = new BehaviorSubject<Answer[]>([]);
   currentBuilderState$ = this.builderState$.asObservable();
 
-  changeBuilderState(value: Omit<Question, 'isRequired' | 'options'>[]): void {
+  changeBuilderState(value: Answer[]): void {
     this.builderState$.next(value);
   }
 }

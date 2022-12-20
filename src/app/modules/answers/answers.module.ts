@@ -1,9 +1,10 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { AnswerComponent } from './answer/answer.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {AnswerComponent} from './answer/answer.component';
 import {RouterModule, Routes} from "@angular/router";
+import {AnswersGuard} from "../../guards/answers.guard";
 
-const routes: Routes = [{path: '', component: AnswerComponent}]
+const routes: Routes = [{path: '', component: AnswerComponent, canActivate: [AnswersGuard]}]
 
 @NgModule({
   declarations: [
@@ -14,4 +15,5 @@ const routes: Routes = [{path: '', component: AnswerComponent}]
     RouterModule.forChild(routes)
   ]
 })
-export class AnswersModule { }
+export class AnswersModule {
+}

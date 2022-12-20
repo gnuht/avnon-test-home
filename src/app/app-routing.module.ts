@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
 const routes: Routes = [
   {
@@ -11,7 +11,7 @@ const routes: Routes = [
       },
       {
         path: 'answers',
-        loadChildren: () => import('./modules/answers/answers.module').then(m => m.AnswersModule)
+        loadChildren: () => import('./modules/answers/answers.module').then(m => m.AnswersModule),
       },
       {
         path: '',
@@ -31,4 +31,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

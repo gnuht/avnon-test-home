@@ -1,0 +1,22 @@
+.answers {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    row-gap: .5rem;
+  }
+
+  &__title {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  &__value {
+    display: flex;
+    flex-direction: column;
+    row-gap: .25rem;
+  }
+}
