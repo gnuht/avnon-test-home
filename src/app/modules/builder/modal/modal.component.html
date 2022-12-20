@@ -1,0 +1,40 @@
+<form nz-form class="form" [formGroup]="questionForm">
+  <nz-form-item>
+    <nz-form-control nzErrorTip="This field is required!!!">
+      <input nz-input
+             placeholder="Type question here..."
+             formControlName="question" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-control nzErrorTip="This field is required!!!">
+      <nz-select formControlName="answerType">
+        <nz-option *ngFor="let option of answerOptions" [nzValue]="option.id" [nzLabel]="option.label"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
+
+  <ng-container *ngIf="answerType.value === 1">
+    <ng-container formArrayName="checkboxOption">
+      <ng-container *ngFor="let _ of checkboxOption.controls; let i = index">
+        <nz-form-item>
+          <nz-form-control nzErrorTip="This field is required!!!">
+            <input nz-input placeholder="Add Answer Option" [formControlName]="i" />
+          </nz-form-control>
+        </nz-form-item>
+      </ng-container>
+    </ng-container>
+
+    <p (click)="addOtherAnswer()">+ Add other answer</p>
+  </ng-container>
+
+  <label class="form__label" nz-checkbox formControlName="otherAnswer" [nzDisabled]="answerType.value !== 1">
+    Allow user to specify their own answer
+  </label>
+
+  <label class="form__label" nz-checkbox formControlName="isRequired">
+    This field is required
+  </label>
+</form>

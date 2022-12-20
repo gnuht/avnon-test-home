@@ -1,0 +1,32 @@
+<form nz-form class="builder" [formGroup]="$any(answerForm)">
+
+  <div class="builder__question" *ngFor="let question of questionList; let i = index">
+    <nz-form-item>
+      <nz-form-control nzErrorTip="This field is required!!!">
+        <p class="builder__title">{{question.title | titlecase}} <span *ngIf="question.isRequired">*</span></p>
+
+        <ng-container *ngIf="question.type === AnswerType.CheckBox; else paragraphRef">
+          <nz-checkbox-wrapper (nzOnChange)="onChangeCheckbox($event, i)">
+            <div nz-col *ngFor="let checkbox of question.options">
+              <label nz-checkbox nzValue="{{checkbox.value}}">{{checkbox.label | titlecase}}</label>
+            </div>
+          </nz-checkbox-wrapper>
+        </ng-container>
+
+        <ng-template #paragraphRef>
+          <textarea rows="4" nz-input [formControlName]="i"></textarea>
+        </ng-template>
+
+        <p *ngIf="question.type === AnswerType.CheckBox && answerForm.at(i).invalid && answerForm.at(i).dirty"
+           class="builder--error">
+          This field is required!!!
+        </p>
+      </nz-form-control>
+    </nz-form-item>
+  </div>
+
+  <p (click)="openAddNewQuestionModal()">Add New Question</p>
+
+  <button *ngIf="questionList.length" nz-button (click)="reviewAnswers()">Review my answers ></button>
+</form>
+

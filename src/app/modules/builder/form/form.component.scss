@@ -1,0 +1,20 @@
+.builder {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+
+  &__question {
+    display: flex;
+    flex-direction: column;
+    row-gap: .25rem;
+  }
+
+  &__title {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  &--error {
+    color: #ff4d4f;
+  }
+}

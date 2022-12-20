@@ -1,0 +1,12 @@
+<div class="answers" *ngIf="(answerList$ | async) as answerList">
+  <ng-container *ngFor="let answer of answerList">
+    <p>{{answer.title | titlecase}}</p>
+    <ng-container *ngIf="answer.type === AnswerType.Paragraph; else answerCheckBoxRef">
+      <p>{{answer.answer}}</p>
+    </ng-container>
+
+    <ng-template #answerCheckBoxRef>
+      <p *ngFor="let option of getOptions(answer)">{{option | titlecase}}</p>
+    </ng-template>
+  </ng-container>
+</div>
